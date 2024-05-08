@@ -2,7 +2,7 @@
 
 Bem-vindo ao Mundo de Harry Potter - Backend! Este projeto é parte de um desafio de desenvolvimento backend inspirado no mundo mágico criado por J.K. Rowling. Aqui, você encontrará um backend simples desenvolvido em Node.js com Express e PostgreSQL, permitindo operações CRUD completas para bruxos e varinhas.
 
-![alt text](images/image.png)
+![alt text](src/images/harry-potter.png)
 
 ## Funcionalidades🪄
 
@@ -23,7 +23,7 @@ Bem-vindo ao Mundo de Harry Potter - Backend! Este projeto é parte de um desafi
 1. Clone este repositório:
 
 ```
-git clone https://github.com/seu_usuario/harry-potter-backend.git
+git clone https://github.com/thiago-rferreira/atividade-harrypotter_v2.git
 ```
 
 2. Instale as dependências:
@@ -65,7 +65,7 @@ npm start
 
 
 ## Estrutura de pastas 🪄
-![alt text](images/pastas.png)
+![alt text](src/images/pastas.png)
 
 ## Contribuindo
 
