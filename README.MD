@@ -66,6 +66,7 @@ npm start
 
 ## Estrutura de pastas 🪄
 ![alt text](src/images/pastas.png)
+
 A estruturação de pastas em um projeto de software é crucial para a organizabilidade, escalabilidade e manutenção do código. Uma estrutura bem planejada permite que desenvolvedores encontrem facilmente o código responsável por funcionalidades específicas, facilita a implementação de mudanças e ajuda na integração e no teste de novas funcionalidades. No caso de uma API construída usando Node.js e Express, as pastas comumente incluem routes, controllers, config, e outras conforme a necessidade do projeto. Aqui está como essas partes se comunicam e qual a função de cada uma:
 1. /config
    - Armazena arquivos de configuração, como conexões de banco de dados.
