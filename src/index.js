@@ -1,16 +1,19 @@
 require('dotenv').config();
 const express = require('express');
-const bruxosRoutes = require('./routes/bruxosRoutes');
-const varinhasRoutes = require('./routes/varinhasRoutes');
+const usuariosRoutes = require('./routes/usuarios.routes.js')
+const restaurantesRoutes = require('./routes/restaurantes.routes.js')
+const avaliacoesController = require('./routes/avaliacoes.routes.js')
 
 const app = express();
-const port = process.env.PORT || 3000;  // Default to 3000 if PORT is not set
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.use('/', bruxosRoutes);
-app.use('/', varinhasRoutes);
+app.use('/usuarios', usuariosRoutes);
+app.use('/restaurantes', restaurantesRoutes);
+app.use('/avaliacoes', avaliacoesController);
+
 
 app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}🧙🪄✨`);
+  console.log(`Servidor rodando na porta ${port} 🥂`);
 });
