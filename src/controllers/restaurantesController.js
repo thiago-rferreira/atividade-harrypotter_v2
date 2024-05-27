@@ -1,3 +1,4 @@
+
 const pool = require('../config/dbConfig'); // Ajuste o caminho conforme a estrutura do seu projeto
 
 // Função para adicionar um novo restaurante
@@ -14,29 +15,13 @@ const addRestaurant = async (req, res) => {
     rating,
     foundationDate,
     menuPDF,
+    photoUrl,
   } = req.body;
-
-  const photos = req.files['photos'] ? req.files['photos'].map(file => file.path) : [];
-
-  console.log(name, 
-    name,
-    location,
-    priceLevel,
-    cuisineTypeId,
-    chefName,
-    description,
-    openingDays,
-    paymentMethods,
-    rating,
-    foundationDate,
-    menuPDF,
-    photos
-    )
 
   try {
     const result = await pool.query(
-      'INSERT INTO Restaurants (Name, Location, PriceLevel, CuisineTypeID, ChefName, Description, OpeningDays, PaymentMethods, Rating, FoundationDate, MenuPDF, Photos) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *',
-      [name, location, priceLevel, cuisineTypeId, chefName, description, openingDays, paymentMethods, rating, foundationDate, menuPDF, photos]
+      'INSERT INTO Restaurants (Name, Location, PriceLevel, CuisineTypeID, ChefName, Description, OpeningDays, PaymentMethods, Rating, FoundationDate, menulink, Photos) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *',
+      [name, location, priceLevel, cuisineTypeId, chefName, description, openingDays, paymentMethods, rating, foundationDate, menuPDF, photoUrl]
     );
     res.json(result.rows[0]);
   } catch (error) {
@@ -48,7 +33,7 @@ const addRestaurant = async (req, res) => {
 // Função para obter todos os restaurantes
 const getRestaurants = async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM Restaurants');
+    const result = await pool.query('SELECT * FROM restaurants');
     res.json(result.rows);
   } catch (error) {
     console.error('Error fetching from database:', error);
@@ -71,15 +56,13 @@ const updateRestaurant = async (req, res) => {
     rating,
     foundationDate,
     menuPDF,
+    photoUrl,
   } = req.body;
-
-
-  const photos = req.files['photos'] ? req.files['photos'].map(file => file.path) : [];
 
   try {
     const result = await pool.query(
-      'UPDATE Restaurants SET Name = $1, Location = $2, PriceLevel = $3, CuisineTypeID = $4, ChefName = $5, Description = $6, OpeningDays = $7, PaymentMethods = $8, Rating = $9, FoundationDate = $10, MenuPDF = $11, Photos = $12 WHERE RestaurantID = $13 RETURNING *',
-      [name, location, priceLevel, cuisineTypeId, chefName, description, openingDays, paymentMethods, rating, foundationDate, menuPDF, photos, id]
+      'UPDATE Restaurants SET Name = $1, Location = $2, PriceLevel = $3, CuisineTypeID = $4, ChefName = $5, Description = $6, OpeningDays = $7, PaymentMethods = $8, Rating = $9, FoundationDate = $10, menulink = $11, Photos = $12 WHERE RestaurantID = $13 RETURNING *',
+      [name, location, priceLevel, cuisineTypeId, chefName, description, openingDays, paymentMethods, rating, foundationDate, menuPDF, photoUrl, id]
     );
     res.json(result.rows[0]);
   } catch (error) {
@@ -101,9 +84,23 @@ const deleteRestaurant = async (req, res) => {
   }
 };
 
+const getRestaurantById = async (req, res) =>{
+  const { id } = req.params;
+
+  try {
+    const result = await pool.query('SELECT * FROM Restaurants WHERE RestaurantID = $1', [id]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Error fetching from database:', error);
+    res.status(500).send('Error fetching from database');
+  }
+
+}
+
 module.exports = {
   addRestaurant,
   getRestaurants,
   updateRestaurant,
   deleteRestaurant,
+  getRestaurantById
 };

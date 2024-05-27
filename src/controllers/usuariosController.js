@@ -70,15 +70,14 @@ const deleteUser = async (req, res) => {
 // Função para listar todos os usuários
 const getUserById = async (req, res) => {
     const { id } = req.params;
-
     try {
-        const result = await pool.query('SELECT * FROM Users WHERE ID = $1', [id]);
-        res.json(result.rows[0]);
+      const result = await pool.query('SELECT * FROM Users WHERE userid = $1', [id]);
+      res.json(result.rows[0]);
     } catch (error) {
-        console.error('Error fetching from database:', error);
-        res.status(500).send('Error fetching from database');
+      console.error('Error fetching from database:', error);
+      res.status(500).send('Error fetching from database');
     }
-}
+  };
 // Função para listar todos os usuários
 const getUserByEmail = async (req, res) => {
     const { email } = req.params;
