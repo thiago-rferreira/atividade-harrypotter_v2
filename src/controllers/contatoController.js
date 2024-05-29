@@ -88,7 +88,7 @@ const getContatoByEmail = async (req, res) => {
     }
 }
 // Função para listar todos os usuários
-const getContatorByTelefone = async (req, res) => {
+const getContatoByTelefone = async (req, res) => {
     const { telefone } = req.params;
 
     try {
@@ -111,3 +111,14 @@ const getContatoByNome = async (req, res) => {
         res.status(500).send('Error fetching from database');
     }
 }
+
+module.exports = {
+    addContato,
+    getContato,
+    updateContato,
+    deleteContato,
+    getContatoById,
+    getContatoByEmail,
+    getContatoByTelefone,
+    getContatoByNome
+};
