@@ -42,12 +42,24 @@ const updateContato = async (req, res) => {
 
     try {
         const result = await pool.query(
-            'UPDATE Contatos SET Nome = $1, Email = $2, Telefone = $3, Mensagem = $4, ID = $6 RETURNING *',
+            'UPDATE Contatos SET Nome = $1, Email = $2, Telefone = $3, Mensagem = $4, ID = $5 RETURNING *',
             [nome, email, telefone, mensagem, id]
         );
         res.json(result.rows[0]);
     } catch (error) {
         console.error('Error updating from database:', error);
         res.status(500).send('Error updating from database');
+    }
+}
+
+const deleteContato = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const result = await pool.query('DELETE FROM Contato WHERE ID = $1', [id]);
+        res.json(result.rows[0]);
+    } catch (error) {
+        console.error('Error deleting from database:', error);
+        res.status(500).send('Error deleting from database');
     }
 }
