@@ -75,3 +75,39 @@ const getContatoById = async (req, res) => {
         res.status(500).send('Error fetching from database');
     }
 }
+
+const getContatoByEmail = async (req, res) => {
+    const { email } = req.params;
+
+    try {
+        const result = await pool.query('SELECT * FROM Contato WHERE Email = $1', [email]);
+        res.json(result.rows[0]);
+    } catch (error) {
+        console.error('Error fetching from database:', error);
+        res.status(500).send('Error fetching from database');
+    }
+}
+// Função para listar todos os usuários
+const getContatorByTelefone = async (req, res) => {
+    const { telefone } = req.params;
+
+    try {
+        const result = await pool.query('SELECT * FROM Users WHERE Telefone = $1', [telefone]);
+        res.json(result.rows);
+    } catch (error) {
+        console.error('Error fetching from database:', error);
+        res.status(500).send('Error fetching from database');
+    }
+}
+
+const getContatoByNome = async (req, res) => {
+    const { nome } = req.params;
+
+    try {
+        const result = await pool.query('SELECT * FROM Contatos WHERE Name = $1', [nome]);
+        res.json(result.rows);
+    } catch (error) {
+        console.error('Error fetching from database:', error);
+        res.status(500).send('Error fetching from database');
+    }
+}
