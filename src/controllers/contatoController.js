@@ -63,3 +63,15 @@ const deleteContato = async (req, res) => {
         res.status(500).send('Error deleting from database');
     }
 }
+
+const getContatoById = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const result = await pool.query('SELECT * FROM Contado WHERE ID = $1', [id]);
+        res.json(result.rows[0]);
+    } catch (error) {
+        console.error('Error fetching from database:', error);
+        res.status(500).send('Error fetching from database');
+    }
+}
