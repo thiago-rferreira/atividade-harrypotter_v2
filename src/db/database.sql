@@ -60,3 +60,12 @@ CREATE TABLE Reviews (
     FOREIGN KEY (UserID) REFERENCES Users(UserID),
     FOREIGN KEY (RestaurantID) REFERENCES Restaurants(RestaurantID)
 );
+
+-- Create the Contato table to manage user contacts
+CREATE TABLE Contato (
+    ContatoID SERIAL PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    Telefone VARCHAR(11) NOT NULL,
+    Mensagem TEXT NOT NULL
+);
