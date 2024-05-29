@@ -20,3 +20,13 @@ const addContato = async (req, res) => {
         res.status(500).send('Error inserting into database');
     }
 }
+
+const getContato = async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM Contato');
+        res.json(result.rows);
+    } catch (error) {
+        console.error('Error fetching from database:', error);
+        res.status(500).send('Error fetching from database');
+    }
+}
