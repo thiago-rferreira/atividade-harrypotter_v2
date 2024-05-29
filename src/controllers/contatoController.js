@@ -30,3 +30,24 @@ const getContato = async (req, res) => {
         res.status(500).send('Error fetching from database');
     }
 }
+
+const updateContato = async (req, res) => {
+    const { id } = req.params;
+    const {
+        nome,
+        email,
+        telefone,
+        mensagem
+    } = req.body;
+
+    try {
+        const result = await pool.query(
+            'UPDATE Contatos SET Nome = $1, Email = $2, Telefone = $3, Mensagem = $4, ID = $6 RETURNING *',
+            [nome, email, telefone, mensagem, id]
+        );
+        res.json(result.rows[0]);
+    } catch (error) {
+        console.error('Error updating from database:', error);
+        res.status(500).send('Error updating from database');
+    }
+}
