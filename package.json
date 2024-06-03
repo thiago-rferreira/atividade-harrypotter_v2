@@ -11,9 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.0",
-    "pg": "^8.11.5"
+    "pg": "^8.11.5",
+    "pool": "^0.4.1"
   }
 }
